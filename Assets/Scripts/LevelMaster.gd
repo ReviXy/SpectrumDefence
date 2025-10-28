@@ -44,6 +44,8 @@ func _process(_delta: float) -> void:
 		else:
 			printerr("NYI: implement a victory condition")
 
+signal WaveLaunched(wave)
+
 func LaunchNextWave():
 	# This is a redundancy check in case someone calls the function when there are no more waves.
 	if (wave >= waves.size()):
@@ -51,7 +53,7 @@ func LaunchNextWave():
 	else:
 		for deployment in waves[wave].Deployments:
 			DeployDeployment(deployment)
-			print(deployment.PathNode)
+		WaveLaunched.emit(wave)
 		wave += 1
 
 func DeployDeployment(deployment: Deployment):
