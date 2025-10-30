@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rd85whs4473n"]
+[gd_scene load_steps=14 format=3 uid="uid://rd85whs4473n"]
 
 [ext_resource type="Script" uid="uid://dtpxgqtuqyw7" path="res://Assets/Scripts/LevelMaster.gd" id="1_860qo"]
 [ext_resource type="Script" uid="uid://ds3m5it8756mk" path="res://Assets/Resources/WaveData.gd" id="2_5sfky"]
@@ -53,8 +53,6 @@ script = ExtResource("2_5sfky")
 Deployments = Array[ExtResource("3_htaxq")]([SubResource("Resource_4747e"), SubResource("Resource_vu1kp")])
 metadata/_custom_type_script = "uid://ds3m5it8756mk"
 
-[sub_resource type="Environment" id="Environment_860qo"]
-
 [sub_resource type="Curve3D" id="Curve3D_860qo"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12, 0, -7, 0, 0, 0, 0, 0, 0, 12, 0, 7, 0, 0, 0, 0, 0, 0, 6, 0, 7, 0, 0, 0, 0, 0, 0, 6, 0, -5, 0, 0, 0, 0, 0, 0, -6, 0, -5, 0, 0, 0, 0, 0, 0, -6, 0, 7, 0, 0, 0, 0, 0, 0, -12, 0, 7, 0, 0, 0, 0, 0, 0, -12, 0, -7),
@@ -74,20 +72,8 @@ script = ExtResource("1_860qo")
 waves = Array[ExtResource("2_5sfky")]([SubResource("Resource_1lknj"), SubResource("Resource_87r1j"), SubResource("Resource_e3oex")])
 HP = 10
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_860qo")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.30496407, 0.95236385, 0, -0.95236385, -0.30496407, 0, 0, 0)
-metadata/_edit_lock_ = true
-
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_860qo")
 
 [node name="Path3D2" type="Path3D" parent="."]
 curve = SubResource("Curve3D_do8tk")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 0, 15.411943, 4)
-projection = 1
-size = 14.592

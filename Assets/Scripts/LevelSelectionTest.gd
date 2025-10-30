@@ -13,5 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	GlobalLevelManager.levelID = -1
-	GlobalLevelManager.testValue = "321"
 	get_tree().change_scene_to_file("res://Assets/Scenes/TestLevel.tscn")

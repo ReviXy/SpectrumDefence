@@ -1,13 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcp5pfox3i413"]
+[gd_scene load_steps=8 format=3 uid="uid://dcp5pfox3i413"]
 
 [ext_resource type="MeshLibrary" uid="uid://cii6cupimmybi" path="res://Assets/Models/Tiles.tres" id="1_4ci15"]
 [ext_resource type="Script" uid="uid://b685gk0he8pcc" path="res://Assets/Scripts/LevelScript.gd" id="2_ytclr"]
+[ext_resource type="PackedScene" uid="uid://rd85whs4473n" path="res://Assets/Scenes/Pathing.tscn" id="3_ytclr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1vc4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqh6b"]
 transparency = 1
 albedo_color = Color(0, 1, 0, 0.47843137)
+
+[sub_resource type="Curve3D" id="Curve3D_a1jm5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12, 0, -7, 0, 0, 0, 0, 0, 0, 12, 0, 7, 0, 0, 0, 0, 0, 0, 6, 0, 7, 0, 0, 0, 0, 0, 0, 6, 0, -5, 0, 0, 0, 0, 0, 0, -6, 0, -5, 0, 0, 0, 0, 0, 0, -6, 0, 7, 0, 0, 0, 0, 0, 0, -12, 0, 7, 0, 0, 0, 0, 0, 0, -12, 0, -7),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="Curve3D" id="Curve3D_lgef8"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 14, 0, -5, 0, 0, 0, 0, 0, 0, -12, 0, -5, 0, 0, 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 7, 0, 0, 0, 0, 0, 0, -14, 0, 7),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="GridMap" type="GridMap"]
 mesh_library = ExtResource("1_4ci15")
@@ -22,3 +37,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 mesh = SubResource("PlaneMesh_1vc4c")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qqh6b")
+
+[node name="Pathing" parent="." instance=ExtResource("3_ytclr")]
+HP = 100
+
+[node name="Path3D3" type="Path3D" parent="Pathing"]
+curve = SubResource("Curve3D_a1jm5")
+
+[node name="Path3D4" type="Path3D" parent="Pathing"]
+curve = SubResource("Curve3D_lgef8")

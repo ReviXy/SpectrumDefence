@@ -1,4 +1,3 @@
 extends Node
 
-var levelID = 0
-var testValue = "123"
+var levelID = -1
