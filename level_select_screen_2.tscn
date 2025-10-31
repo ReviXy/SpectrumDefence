@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctc1roc4kbcow"]
+
+[ext_resource type="PackedScene" uid="uid://chw7rcmwvov2s" path="res://lvl_btn.tscn" id="1_snog1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 719.0
+color = Color(1, 0.60784316, 0.4117647, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1271.0
+offset_bottom = 139.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "SELECT LEVEL"
+
+[node name="lvl6" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 230.0
+offset_right = 439.0
+offset_bottom = 312.0
+text = "LEVEL
+6"
+level_path = "uid://cld3qkg31gn37"
+
+[node name="lvl7" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 230.0
+offset_right = 701.0
+offset_bottom = 312.0
+text = "LEVEL
+7"
+level_path = "uid://cld3qkg31gn37"
+
+[node name="lvl8" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 235.0
+offset_right = 968.0
+offset_bottom = 317.0
+text = "LEVEL
+8"
+level_path = "uid://cld3qkg31gn37"
+
+[node name="lvl9" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 408.0
+offset_right = 570.0
+offset_bottom = 490.0
+text = "LEVEL
+9
+"
+level_path = "uid://cld3qkg31gn37"
+
+[node name="lvl10" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 408.0
+offset_right = 834.0
+offset_bottom = 490.0
+text = "LEVEL
+10"
+level_path = "uid://cld3qkg31gn37"
+
+[node name="PauseButton" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+text = "PAUSE"
+level_path = "uid://pvg10iu01cdw"
+
+[node name="NextPage" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 1146.0
+offset_top = 330.0
+offset_right = 1241.0
+offset_bottom = 388.0
+text = "->"
+level_path = "uid://ddnn7oqm3bnmq"
+
+[node name="PrevPage" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 330.0
+offset_right = 131.0
+offset_bottom = 388.0
+text = "<-"
+level_path = "uid://cig2o02ki2uc0"
+
+[node name="MenuButton" parent="." instance=ExtResource("1_snog1")]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 624.0
+offset_right = 705.0
+offset_bottom = 662.0
+text = "BACK TO MENU"
+level_path = "uid://gs8qe4uoyalq"
