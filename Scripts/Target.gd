@@ -1,16 +1,10 @@
-extends RefCounted
-class_name Target
+@abstract
+class_name Target extends Node2D
 
 var can_stop_laser: bool
 
-
-func Can_stop_laser() -> bool:
-	return can_stop_laser
-
-
-func Got_hit_by_laser(laser: Node) -> void:
-	pass
+@abstract
+func Got_hit_by_laser(laser: Node) -> void
 	
-
-func While_hit_by_laser(laser: Node) -> void:
-	print("HIT by laser: ", laser.name)
+@abstract
+func While_hit_by_laser(laser: Node) -> void

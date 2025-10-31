@@ -1,6 +1,10 @@
-extends Node3D  # или любой другой Node
+class_name Mirror extends "res://Scripts/Target.gd"
 
 func _ready():
-	print("Создано зеркало")
-	add_to_group("Mirror")
-	print("Группы после добавления: ", get_groups())
+	can_stop_laser = false
+
+func Got_hit_by_laser(laser: Node) -> void:
+	print("Got Hit")
+
+func While_hit_by_laser(laser: Node) -> void:
+	print("hit")
