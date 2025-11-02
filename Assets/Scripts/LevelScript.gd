@@ -61,7 +61,7 @@ func _unhandled_input(event):
 					levelUI.showTowerPanel(towers[configuratedTowerIndex])
 		
 		State.Placing:
-			# Tile Highligth
+			# Tile Highlight
 			if event is InputEventMouse:
 				var cell_coords = getTileUnderMouse(event)
 				if cell_coords:

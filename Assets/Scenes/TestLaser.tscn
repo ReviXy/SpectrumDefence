@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c2p0kd0hs4hkw"]
 
-[ext_resource type="PackedScene" uid="uid://cmo11yu60i0b" path="res://turret.tscn" id="1_p5e8f"]
-[ext_resource type="PackedScene" uid="uid://c2puurpqryu8j" path="res://laser.tscn" id="2_gqjnj"]
-[ext_resource type="Script" uid="uid://sww2xtnvh5th" path="res://Scripts/Mirror.gd" id="2_ol8y4"]
+[ext_resource type="PackedScene" uid="uid://cmo11yu60i0b" path="res://Assets/Scenes/Towers/turret.tscn" id="1_mgy1n"]
+[ext_resource type="Script" uid="uid://q5rsc04ckco7" path="res://Assets/Scripts/Mirror.gd" id="2_yi4mg"]
+[ext_resource type="PackedScene" uid="uid://c2puurpqryu8j" path="res://Assets/Shaders/laser.tscn" id="3_goi5b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gqjnj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -32,17 +32,17 @@ shadow_enabled = true
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_7hb1h")
 
-[node name="Turret" parent="." instance=ExtResource("1_p5e8f")]
+[node name="Turret" parent="." instance=ExtResource("1_mgy1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24, 0.25, -0.024)
 
-[node name="Wall" parent="." instance=ExtResource("1_p5e8f")]
+[node name="Wall" parent="." instance=ExtResource("1_mgy1n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7955301, 0.25, 1.4627327)
 
-[node name="Mirror" parent="." instance=ExtResource("1_p5e8f")]
+[node name="Mirror" parent="." instance=ExtResource("1_mgy1n")]
 transform = Transform3D(0.94269395, 0, 0.33365875, 0, 1, 0, -0.33365875, 0, 0.94269395, 1.25, 0.25, -0.12226117)
-script = ExtResource("2_ol8y4")
+script = ExtResource("2_yi4mg")
 
-[node name="Laser" parent="." instance=ExtResource("2_gqjnj")]
+[node name="Laser" parent="." instance=ExtResource("3_goi5b")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1, 0.25, 0)
 target_position = Vector3(0, -10, 0)
 

@@ -1,4 +1,4 @@
-class_name Mirror extends "res://Scripts/Target.gd"
+class_name Mirror extends "res://Assets/Scripts/Target.gd"
 
 func _ready():
 	can_stop_laser = false

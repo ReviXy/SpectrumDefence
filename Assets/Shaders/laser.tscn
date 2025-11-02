@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2puurpqryu8j"]
 
-[ext_resource type="Script" uid="uid://42v837fkdqcg" path="res://Scripts/Laser.gd" id="1_c4r1g"]
-[ext_resource type="PackedScene" uid="uid://cro04y024dvii" path="res://end_particles.tscn" id="2_6vqwg"]
-[ext_resource type="PackedScene" uid="uid://chv7fu7pnloo8" path="res://beam_particles.tscn" id="3_g6b45"]
+[ext_resource type="Script" uid="uid://42v837fkdqcg" path="res://Assets/Scripts/Laser.gd" id="1_c4r1g"]
+[ext_resource type="PackedScene" uid="uid://cro04y024dvii" path="res://Assets/Shaders/end_particles.tscn" id="2_6vqwg"]
+[ext_resource type="PackedScene" uid="uid://chv7fu7pnloo8" path="res://Assets/Shaders/beam_particles.tscn" id="3_g6b45"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7vjml"]
 flip_faces = true

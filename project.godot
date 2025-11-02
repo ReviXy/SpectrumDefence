@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="SpectrumDefence"
-run/main_scene="uid://bbrm3x1wpc4o1"
+run/main_scene="uid://baec2mk7u3hey"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalLevelManager="*res://Assets/Scripts/GlobalLevelManager.gd"
+SettingsManager="*res://Assets/Scenes/SettingsManager.tscn"
 
 [display]
 

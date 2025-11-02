@@ -22,7 +22,11 @@ var minimized := false
 @onready var currencyLabel = $Currency/Label
 @onready var healthLabel = $Health/Label
 
+@onready var pauseMenu = $PauseMenu
+
 var gridmap: GridMap # soon to be manager (get promoted upon merge)
+
+#__________ Tower Configuration __________
 
 func resetTowerPanel():
 	towerConfigurationPanel.global_position = Vector2(-50, -50)
@@ -46,9 +50,7 @@ func _on_destroy_button_pressed() -> void:
 	gridmap.state = gridmap.State.None
 	resetTowerPanel()
 
-
-
-
+#__________ Tower Placement __________
 
 func _on_minimize_panel_button_pressed() -> void:
 	if minimized:
@@ -59,10 +61,26 @@ func _on_minimize_panel_button_pressed() -> void:
 		minimizePanelButton.text = "<-"
 	minimized = !minimized
 
-
 func _on_place_test_tower_button_pressed() -> void:
 	if gridmap.state == gridmap.State.None: 
 		gridmap.state = gridmap.State.Placing
 	elif gridmap.state == gridmap.State.Placing: 
 		gridmap.state = gridmap.State.None
 		gridmap.resetHighlight()
+
+#__________ Pause Menu __________
+
+func _on_continue_button_pressed() -> void:
+	pauseMenu.visible = false
+	get_tree().paused = false
+
+func _on_options_button_pressed() -> void:
+	SettingsManager.showSettingsMenu()
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Assets/Scenes/MainMenu.tscn")
+
+func _on_pause_button_pressed() -> void:
+	pauseMenu.visible = true
+	get_tree().paused = true

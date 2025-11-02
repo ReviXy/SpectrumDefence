@@ -58,10 +58,10 @@ func LaunchNextWave():
 
 func DeployDeployment(deployment: Deployment):
 	ActiveDeployments += 1
-	await get_tree().create_timer(deployment.PreDeployDelay).timeout
+	await get_tree().create_timer(deployment.PreDeployDelay, false).timeout
 	for i in range(deployment.EnemyCount):
 		get_node(deployment.PathNode).add_child(deployment.Enemy.instantiate())
-		await get_tree().create_timer(deployment.DeployDelay).timeout
+		await get_tree().create_timer(deployment.DeployDelay, false).timeout
 	ActiveDeployments -= 1
 
 func ReachedExit(Entity: BaseEntity):

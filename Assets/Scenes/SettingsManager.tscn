@@ -1,0 +1,141 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn2ciudf1u16y"]
+
+[ext_resource type="Script" uid="uid://5lv2cyxu8f1k" path="res://Assets/Scripts/SettingsManager.gd" id="1_1mpwi"]
+
+[sub_resource type="Theme" id="Theme_1mpwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3bbr"]
+bg_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+
+[node name="Control" type="Control"]
+process_mode = 3
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1mpwi")
+
+[node name="SettingsMenu" type="CanvasLayer" parent="."]
+layer = 5
+visible = false
+
+[node name="Panel" type="Panel" parent="SettingsMenu"]
+top_level = true
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1mpwi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3bbr")
+
+[node name="Label" type="Label" parent="SettingsMenu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 100.0
+offset_right = 110.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Настройки"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu"]
+custom_minimum_size = Vector2(0, 350)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -160.0
+offset_right = -100.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Громкость музыки"
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Громкость звуков"
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+tick_count = 10
+ticks_on_borders = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Разрешение"
+
+[node name="OptionButton" type="OptionButton" parent="SettingsMenu/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Полноэкранный режим"
+
+[node name="CheckBox" type="CheckBox" parent="SettingsMenu/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="SaveAndQuitButton" type="Button" parent="SettingsMenu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.0
+offset_top = 600.0
+offset_right = 175.0
+offset_bottom = 660.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "Сохранить и выйти"
+
+[connection signal="pressed" from="SettingsMenu/SaveAndQuitButton" to="." method="_on_save_and_quit_button_pressed"]
