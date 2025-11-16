@@ -41,7 +41,7 @@ func _on_rotate_button_pressed() -> void:
 	LevelManager.this.GridM.configuratedTower.rotateTower()
 
 func _on_configure_button_pressed() -> void:
-	pass 
+	LevelManager.this.GridM.configuratedTower.configureTower()
 
 func _on_destroy_button_pressed() -> void:
 	LevelManager.this.GridM.set_cell_item(LevelManager.this.GridM.configuratedTower.cellCoords[0], LevelManager.this.GridM.mesh_library.find_item_by_name("TowerTile"))

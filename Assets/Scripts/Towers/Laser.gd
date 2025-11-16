@@ -1,4 +1,5 @@
 class_name Laser extends RayCast3D
+const ColorRYB = ColorRYB_Operations.ColorRYB
 
 @onready var area_of_effect = $AreaOfEffect
 @onready var area_of_effect_shape = ($AreaOfEffect/CollisionShape3D).shape as CylinderShape3D
@@ -12,15 +13,16 @@ class_name Laser extends RayCast3D
 var tween: Tween
 var beam_radius: float = 0.03
 
-@export var color: Color = Color.RED:
+var color: ColorRYB = ColorRYB.Red:
 	set(new_color):
 		color = new_color
-		beam_material.albedo_color = new_color
-		beam_material.emission = new_color
-		end_particles_material.albedo_color = new_color
-		end_particles_material.emission = new_color
-		beam_particles_material.albedo_color = new_color
-		beam_particles_material.emission = new_color
+		var temp = ColorRYB_Operations.ToColor(new_color)
+		beam_material.albedo_color = temp
+		beam_material.emission = temp
+		end_particles_material.albedo_color = temp
+		end_particles_material.emission = temp
+		beam_particles_material.albedo_color = temp
+		beam_particles_material.emission = temp
 
 @export var distance: float = 1
 @export var intensity: float = 10

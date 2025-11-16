@@ -12,7 +12,9 @@ var towers := {}
 var placingTowerKey: String
 var towerPrefabDictionary = {
 	"Emitter": preload("res://Assets/Scenes/Towers/Emitter.tscn"),
-	"Mirror": preload("res://Assets/Scenes/Towers/Mirror.tscn")
+	"Mirror": preload("res://Assets/Scenes/Towers/Mirror.tscn"),
+	"Filter": preload("res://Assets/Scenes/Towers/Filter.tscn"),
+	"Lens": preload("res://Assets/Scenes/Towers/Lens.tscn")
 }
 
 func resetHighlight():

@@ -1,8 +1,9 @@
 class_name Emitter extends BaseTower
+const ColorRYB = preload("res://Assets/Scripts/ColorRYB.gd").ColorRYB
 
 @onready var laser: Laser = $Laser
 
-@export var color: Color = Color.RED:
+@export var color: ColorRYB = ColorRYB.Red:
 	set(new_color):
 		color = new_color
 		if laser: laser.color = new_color
@@ -23,7 +24,7 @@ func _ready() -> void:
 	laser.intensity = intensity
 
 func configureTower():
-	pass
+	color = ((color + 1) % ColorRYB.size() ) as ColorRYB
 
 func begin_laser_collision(laser: Laser):
 	pass
