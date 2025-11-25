@@ -152,7 +152,6 @@ script = ExtResource("2_3i3hp")
 [node name="WaveManager" type="Node3D" parent="."]
 script = ExtResource("2_7x1ww")
 waves = Array[ExtResource("4_3e7vo")]([SubResource("Resource_svaum"), SubResource("Resource_3n5l5"), SubResource("Resource_wie7u"), SubResource("Resource_owcc2"), SubResource("Resource_f54oi"), SubResource("Resource_ukere")])
-autoLaunch = true
 
 [node name="WaveDelayTimer" type="Timer" parent="WaveManager"]
 one_shot = true

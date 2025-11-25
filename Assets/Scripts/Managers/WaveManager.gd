@@ -3,20 +3,20 @@ class_name WaveManager
 
 @export var waves: Array[WaveData]
 @export var wave: int = 0
-@export var autoLaunch: bool = false
 @onready var WaveDelayTimer: Timer = $WaveDelayTimer
 var EntityCount: int = 0
 var PendingDeployments: int = 0
+var autoLaunch: bool = false
 
 
 func _ready() -> void:
 	await LevelManager.this.get_parent_node_3d().ready
-	WaveDelayTimer.timeout.connect(func(): if (autoLaunch): LaunchNextWave())
+	WaveDelayTimer.timeout.connect(LaunchNextWave)
 	
 # Called when the node enters the scene tree for the first time.
 func _process(_delta: float) -> void:
 	#print(WaveDelayTimer.time_left)
-	if (EntityCount == 0 and PendingDeployments == 0) and (Input.is_action_just_pressed("LaunchWave")):
+	if (EntityCount == 0 and PendingDeployments == 0) and (Input.is_action_just_pressed("LaunchWave") or autoLaunch):
 		LaunchNextWave()
 		WaveDelayTimer.stop()
 
@@ -51,7 +51,7 @@ func EnemyGone():
 		WaveEnded.emit(wave)
 		if (wave >= waves.size()-1):
 			printerr("NYI: implement a victory condition")
-		elif(autoLaunch):
+		else:
 			LevelManager.this.ResourceM.GainResources(waves[wave].WaveReward)
 			wave += 1
 			WaveDelayTimer.start(waves[wave].Pre_wave_delay)
