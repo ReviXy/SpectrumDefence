@@ -75,11 +75,12 @@ func update():
 	area_of_effect.position.y = beam_length / 2
 	end_particles.position = beam_end_position
 
-func _physics_process(_delta):
+func _process(_delta):
 	if update_flag:
 		update()
 		update_flag = false
-	
+
+func _physics_process(_delta):
 	var enemies_in_aoe = area_of_effect.get_overlapping_areas()
 
 	for enemy in enemies_in_aoe:
