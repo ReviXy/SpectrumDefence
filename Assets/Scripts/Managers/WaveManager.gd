@@ -3,22 +3,25 @@ class_name WaveManager
 
 @export var waves: Array[WaveData]
 @export var wave: int = 0
-@export var autoLaunch: bool = false
+@onready var WaveDelayTimer: Timer = $WaveDelayTimer
 var EntityCount: int = 0
 var PendingDeployments: int = 0
+var autoLaunch: bool = false
+
 
 func _ready() -> void:
 	await LevelManager.this.get_parent_node_3d().ready
+	WaveDelayTimer.timeout.connect(LaunchNextWave)
 	
 # Called when the node enters the scene tree for the first time.
 func _process(_delta: float) -> void:
-	if (EntityCount == 0 and PendingDeployments == 0):
-		if (wave >= waves.size()):
-			printerr("NYI: implement a victory condition")
-		elif Input.is_action_just_pressed("LaunchWave") or (autoLaunch and wave > 0):
-			LaunchNextWave()
+	#print(WaveDelayTimer.time_left)
+	if (EntityCount == 0 and PendingDeployments == 0) and (Input.is_action_just_pressed("LaunchWave") or autoLaunch):
+		LaunchNextWave()
+		WaveDelayTimer.stop()
 
 signal WaveLaunched(wave_index)
+signal WaveEnded(wave_index)
 
 func LaunchNextWave():
 	# This is a redundancy check in case someone calls the function when there are no more waves.
@@ -28,12 +31,27 @@ func LaunchNextWave():
 		for deployment in waves[wave].Deployments:
 			DeployDeployment(deployment)
 		WaveLaunched.emit(wave)
-		wave += 1
 
 func DeployDeployment(deployment: Deployment):
 	PendingDeployments += 1
 	await get_tree().create_timer(deployment.PreDeployDelay, false).timeout
 	for i in range(deployment.EnemyCount):
-		get_node(deployment.PathNode).add_child(deployment.Enemy.instantiate())
-		await get_tree().create_timer(deployment.DeployDelay, false).timeout
+		var Enemy: BaseEntity = deployment.Enemy.instantiate()
+		Enemy.EnemyWeakColor = deployment.EnemyColor
+		for override in deployment.Value_Overrides:
+			if override in Enemy:
+				Enemy.set(override,deployment.Value_Overrides[override])
+		get_node(deployment.PathNode).add_child(Enemy)
+		if (i < deployment.EnemyCount-1):
+			await get_tree().create_timer(deployment.DeployDelay, false).timeout
 	PendingDeployments -= 1
+
+func EnemyGone():
+	if (EntityCount == 0 and PendingDeployments == 0):
+		WaveEnded.emit(wave)
+		if (wave >= waves.size()-1):
+			printerr("NYI: implement a victory condition")
+		else:
+			LevelManager.this.ResourceM.GainResources(waves[wave].WaveReward)
+			wave += 1
+			WaveDelayTimer.start(waves[wave].Pre_wave_delay)
