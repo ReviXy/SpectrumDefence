@@ -26,7 +26,7 @@ bg_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
 script = ExtResource("1_j6vvw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.17364821, 0.98480767, 0, -0.98480767, 0.17364821, 0, 15, 0)
+transform = Transform3D(0.7071068, 0.5, -0.5, 0, 0.70710677, 0.70710677, 0.7071068, -0.5, 0.5, -20, 25, 20)
 projection = 1
 current = true
 size = 30.0
