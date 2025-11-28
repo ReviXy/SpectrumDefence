@@ -7,7 +7,8 @@ class_name ResourceManager
 		if LevelManager.this.UIM:
 			LevelManager.this.UIM._update_hp()
 		if HP <= 0:
-			printerr("NYI: level lost")
+			#printerr("NYI: level lost")
+			LevelManager.this.UIM.show_mission_lose()
 
 @export var Resources: int = 0:
 	set(value):

@@ -82,14 +82,6 @@ offset_left = 1030.0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="MinimizePanelButton" type="Button" parent="LevelUI/TowerPlacementPanel"]
-layout_mode = 0
-offset_left = -32.0
-offset_top = 291.0
-offset_bottom = 381.0
-focus_mode = 0
-text = "->"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/TowerPlacementPanel"]
 layout_mode = 1
 anchors_preset = 5
@@ -101,6 +93,47 @@ offset_right = 96.0
 offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/TowerPlacementPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Health" type="Control" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Health"]
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("8_uhh13")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Health"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 26.0
+text = "10"
+
+[node name="Currency" type="Control" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Currency"]
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("7_xnpqu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Currency"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 26.0
+text = "100"
 
 [node name="PlaceEmitterButton" type="Button" parent="LevelUI/TowerPlacementPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -136,52 +169,6 @@ layout_mode = 2
 focus_mode = 0
 text = "Поставить призму"
 metadata/TowerType = "Prism"
-
-[node name="Currency" type="Control" parent="LevelUI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 10.0
-offset_top = 60.0
-offset_right = 90.0
-offset_bottom = 85.0
-
-[node name="TextureRect" type="TextureRect" parent="LevelUI/Currency"]
-layout_mode = 0
-offset_right = 25.0
-offset_bottom = 25.0
-texture = ExtResource("7_xnpqu")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="LevelUI/Currency"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 26.0
-text = "100"
-
-[node name="Health" type="Control" parent="LevelUI"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 10.0
-offset_top = 100.0
-offset_right = 90.0
-offset_bottom = 125.0
-
-[node name="TextureRect" type="TextureRect" parent="LevelUI/Health"]
-layout_mode = 0
-offset_right = 25.0
-offset_bottom = 25.0
-texture = ExtResource("8_uhh13")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="LevelUI/Health"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 26.0
-text = "10"
 
 [node name="PauseButton" type="Button" parent="LevelUI"]
 offset_left = 10.0
@@ -417,7 +404,6 @@ text = "Выбор уровня"
 [connection signal="pressed" from="LevelUI/TowerConfigurationPanel/RotateButton" to="LevelUI" method="_on_rotate_button_pressed"]
 [connection signal="pressed" from="LevelUI/TowerConfigurationPanel/ConfigureButton" to="LevelUI" method="_on_configure_button_pressed"]
 [connection signal="pressed" from="LevelUI/TowerConfigurationPanel/DestroyButton" to="LevelUI" method="_on_destroy_button_pressed"]
-[connection signal="pressed" from="LevelUI/TowerPlacementPanel/MinimizePanelButton" to="LevelUI" method="_on_minimize_panel_button_pressed"]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceEmitterButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceMirrorButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceFilterButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]

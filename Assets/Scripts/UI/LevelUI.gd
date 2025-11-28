@@ -19,8 +19,8 @@ func _process(_delta: float) -> void:
 @onready var minimizePanelButton = $TowerPlacementPanel/MinimizePanelButton
 var minimized := false
 
-@onready var currencyLabel = $Currency/Label
-@onready var healthLabel = $Health/Label
+@onready var currencyLabel = $TowerPlacementPanel/VBoxContainer/HBoxContainer/Currency/Label
+@onready var healthLabel = $TowerPlacementPanel/VBoxContainer/HBoxContainer/Health/Label
 
 @onready var pauseMenu = $PauseMenu
 @onready var missionWin = $MissionWin
@@ -54,15 +54,6 @@ func _on_destroy_button_pressed() -> void:
 
 #__________ Tower Placement __________
 
-func _on_minimize_panel_button_pressed() -> void:
-	if minimized:
-		towerPlacementPanel.global_position.x -= 250
-		minimizePanelButton.text = "->"
-	else: 
-		towerPlacementPanel.global_position.x += 250
-		minimizePanelButton.text = "<-"
-	minimized = !minimized
-
 func _on_place_tower_button_pressed(button: Button) -> void:
 	var gridmap = LevelManager.this.GridM
 	
@@ -95,6 +86,7 @@ func _on_pause_button_pressed() -> void:
 func show_mission_win():
 	# TODO
 	# Check if next level exists. If not? Block or delete NextLevelButton
+	(get_node("MissionWin/Panel/HBoxContainer/NextLevelButton") as Button).disabled = true
 	get_tree().paused = true
 	missionWin.visible = true
 	

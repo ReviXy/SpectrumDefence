@@ -7,6 +7,7 @@ const ColorRYB = ColorRYB_Operations.ColorRYB
 
 var intensity_penalty: float = 0.1
 var input_lasers: Array[Laser] = []
+var last_input_lasers: Array[Laser] = []
 var output_lasers: Array[Laser] = []
 
 func _ready() -> void:
@@ -131,7 +132,11 @@ func continue_laser_collision(laser, collider = null):
 func _process(delta: float) -> void:
 	if (flag):
 		flag = false
-		process_input_lasers(input_lasers)
+		if (is_rotating):
+			for l in output_lasers:
+				l.set_update_flag()
+		else:
+			process_input_lasers(input_lasers)
 
 func end_laser_collision(laser):
 	if (!laser.encountered_prisms.has(self)):

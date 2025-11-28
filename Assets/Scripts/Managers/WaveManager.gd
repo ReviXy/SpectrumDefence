@@ -50,7 +50,8 @@ func EnemyGone():
 	if (EntityCount == 0 and PendingDeployments == 0):
 		WaveEnded.emit(wave)
 		if (wave >= waves.size()-1):
-			printerr("NYI: implement a victory condition")
+			#printerr("NYI: implement a victory condition")
+			LevelManager.this.UIM.show_mission_win()
 		else:
 			LevelManager.this.ResourceM.GainResources(waves[wave].WaveReward)
 			wave += 1
