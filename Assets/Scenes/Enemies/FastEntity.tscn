@@ -1,6 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8fsp0257cefq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8fsp0257cefq"]
 
 [ext_resource type="Script" uid="uid://dty531yx5pnj2" path="res://Assets/Scripts/Enemies/BaseEntity.gd" id="1_7hb6q"]
+[ext_resource type="AnimationLibrary" uid="uid://bsm87ocimnggh" path="res://Assets/AnimLibraries/BaseEntityAnims.res" id="2_evg3u"]
+[ext_resource type="Shader" uid="uid://cvtm237ygpufq" path="res://Assets/Shaders/enemy_shader.gdshader" id="2_i8bip"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3glw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_i8bip")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/part_color = Color(1, 1, 1, 1)
+shader_parameter/fade_factor = 1.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_i3tbn"]
 
@@ -16,10 +26,14 @@ ResourcesGain = 1
 
 [node name="MainMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.5, 0)
+material_override = SubResource("ShaderMaterial_j3glw")
 mesh = SubResource("PrismMesh_i3tbn")
 skeleton = NodePath("../Area3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"BaseEntityAnims": ExtResource("2_evg3u")
+}
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2
