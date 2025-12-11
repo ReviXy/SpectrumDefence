@@ -1,17 +1,18 @@
 @abstract
 class_name BaseTower extends MeshInstance3D
 
-@export var cellCoords = []
+var cellCoords = []
 
 @export var active := true
 @export var rotatable := true
 @export var configurable := true
+@export var upgradable := true
 @export var destroyable := true
 
 #===========================================================
 # Functions for rotate, destroy, configure placeholder
 
-func rotateTower():
+func rotateTower(clockwise: bool):
 	self.rotation_degrees.y = roundi(self.rotation_degrees.y - 45) % 360
 
 func destroyTower():
@@ -19,6 +20,9 @@ func destroyTower():
 
 func configureTower():
 	pass
+
+@abstract
+func getTowerKey() -> String
 
 #===========================================================
 # Laser interraction

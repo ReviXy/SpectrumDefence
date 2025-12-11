@@ -20,6 +20,11 @@ var laser_dictionary = {}
 		intensity = new_intensity
 		if laser: laser.set_params(color, distance, intensity)
 
+@export var availableColors: Array[ColorRYB] = [0 as ColorRYB, 1 as ColorRYB, 2 as ColorRYB, 3 as ColorRYB, 4 as ColorRYB, 5 as ColorRYB, 6 as ColorRYB]
+
+func getTowerKey() -> String:
+	return "Emitter"
+
 func _ready() -> void:
 	await get_tree().physics_frame
 	await get_tree().physics_frame
@@ -37,14 +42,14 @@ func _rotate_coroutine(t):
 		laser.set_update_flag()
 		cur_step += 1
 
-func rotateTower():
+func rotateTower(clockwise: bool):
 	if (!is_rotating):
 		is_rotating = true
 		cur_step = 1
 		var tween = get_tree().create_tween()
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_parallel(true)
-		tween.tween_property(self, "rotation_degrees", Vector3(self.rotation_degrees.x, roundi(self.rotation_degrees.y - 45), self.rotation_degrees.z), 0.5)
+		tween.tween_property(self, "rotation_degrees", Vector3(self.rotation_degrees.x, roundi(self.rotation_degrees.y + (-45 if clockwise else 45)), self.rotation_degrees.z), 0.5)
 		tween.tween_method(_rotate_coroutine, 0.0, 30.0, 0.5)
 		await tween.finished
 		

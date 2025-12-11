@@ -9,8 +9,16 @@ const ColorRYB = preload("res://Assets/Scripts/ColorRYB.gd").ColorRYB
 	set(new_color):
 		color = new_color
 		if indicator_material: indicator_material.albedo_color = ColorRYB_Operations.ToColor(new_color)
+		for laser in laser_dictionary.keys():
+			laser.set_update_flag()
+
+@export var availableColors: Array[ColorRYB] = [0 as ColorRYB, 1 as ColorRYB, 2 as ColorRYB, 3 as ColorRYB, 4 as ColorRYB, 5 as ColorRYB, 6 as ColorRYB]
+
 var intensity_penalty: float = 0.1
 var laser_dictionary = {}
+
+func getTowerKey() -> String:
+	return "Filter"
 
 func _ready() -> void:
 	rotatable = false

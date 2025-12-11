@@ -10,6 +10,9 @@ var input_lasers: Array[Laser] = []
 var last_input_lasers: Array[Laser] = []
 var output_lasers: Array[Laser] = []
 
+func getTowerKey() -> String:
+	return "Prism"
+
 func _ready() -> void:
 	configurable = false
 	await get_tree().physics_frame
@@ -26,14 +29,14 @@ func _rotate_coroutine(t):
 			l.set_update_flag()
 		cur_step += 1
 
-func rotateTower():
+func rotateTower(clockwise: bool):
 	if (!is_rotating):
 		is_rotating = true
 		cur_step = 1
 		var tween = get_tree().create_tween()
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_parallel(true)
-		tween.tween_property(self, "rotation_degrees", Vector3(self.rotation_degrees.x, roundi(self.rotation_degrees.y - 45), self.rotation_degrees.z), 0.5)
+		tween.tween_property(self, "rotation_degrees", Vector3(self.rotation_degrees.x, roundi(self.rotation_degrees.y + (-45 if clockwise else 45)), self.rotation_degrees.z), 0.5)
 		tween.tween_method(_rotate_coroutine, 0.0, 30.0, 0.5)
 		
 		await tween.finished

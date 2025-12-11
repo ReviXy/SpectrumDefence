@@ -1,15 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://vs72j4mljes5"]
+[gd_scene load_steps=20 format=3 uid="uid://vs72j4mljes5"]
 
 [ext_resource type="Script" uid="uid://bgog3l3jt8cfc" path="res://Assets/Scripts/Managers/LevelSelector.gd" id="1_j6vvw"]
 [ext_resource type="Script" uid="uid://b0pt1ly3v1iry" path="res://Assets/Scripts/Managers/LevelCamera.gd" id="2_6jwxn"]
 [ext_resource type="Script" uid="uid://db1lnab1efs5d" path="res://Assets/Scripts/UI/LevelUI.gd" id="3_qxdb1"]
-[ext_resource type="Texture2D" uid="uid://wlu77osrcluu" path="res://Assets/Sprites/Rotate.png" id="4_ggqha"]
+[ext_resource type="Texture2D" uid="uid://wlu77osrcluu" path="res://Assets/Sprites/RotateClockwise.png" id="4_ggqha"]
 [ext_resource type="Texture2D" uid="uid://bi3p4l8t25wvh" path="res://Assets/Sprites/Configure.png" id="5_b6myp"]
 [ext_resource type="Texture2D" uid="uid://dq6n3hy5lhj2h" path="res://Assets/Sprites/Destroy.png" id="6_r5kyp"]
+[ext_resource type="Texture2D" uid="uid://cyt3xexyyg6cl" path="res://Assets/Sprites/X2.png" id="7_b6myp"]
+[ext_resource type="Texture2D" uid="uid://bhhfaasfqa83o" path="res://Assets/Sprites/RotateCounterClockwise.png" id="7_ggqha"]
 [ext_resource type="Texture2D" uid="uid://c1tbn8gxymmf7" path="res://Assets/Sprites/Coin.png" id="7_xnpqu"]
 [ext_resource type="Texture2D" uid="uid://8f8oqyk25hcp" path="res://Assets/Sprites/Lifes.png" id="8_uhh13"]
 [ext_resource type="Texture2D" uid="uid://banh43vc7nu10" path="res://Assets/Sprites/Pause.png" id="9_4ymob"]
 [ext_resource type="Texture2D" uid="uid://cblitmodxsdvn" path="res://Assets/Models/StartButton.png" id="9_6jwxn"]
+[ext_resource type="Texture2D" uid="uid://c435lah81gsut" path="res://Assets/Sprites/Upgrade.png" id="11_qxdb1"]
 
 [sub_resource type="Environment" id="Environment_numvf"]
 ambient_light_source = 2
@@ -50,46 +53,180 @@ camera_attributes = SubResource("CameraAttributesPractical_2rron")
 process_mode = 1
 script = ExtResource("3_qxdb1")
 
-[node name="TowerConfigurationPanel" type="Panel" parent="LevelUI"]
-offset_left = 1030.0
-offset_top = 725.0
-offset_right = 1135.0
-offset_bottom = 765.0
+[node name="TopPanel" type="Panel" parent="LevelUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 140.0
+grow_horizontal = 2
 
-[node name="RotateButton" type="Button" parent="LevelUI/TowerConfigurationPanel"]
+[node name="StartWave" type="Button" parent="LevelUI/TopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_top = 30.0
+offset_right = 34.0
+offset_bottom = 98.0
+grow_horizontal = 2
+focus_mode = 0
+shortcut = SubResource("Shortcut_qxdb1")
+icon = ExtResource("9_6jwxn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/TopPanel/StartWave"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.0
+offset_top = -25.0
+offset_right = 59.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="LevelUI/TopPanel/StartWave/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slash" type="Label" parent="LevelUI/TopPanel/StartWave/HBoxContainer"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="MaxWaveLabel" type="Label" parent="LevelUI/TopPanel/StartWave/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "1"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="LevelUI/TopPanel/StartWave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartWaveHoldTimer" type="Timer" parent="LevelUI/TopPanel/StartWave"]
+one_shot = true
+
+[node name="Health" type="Control" parent="LevelUI/TopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_top = 30.0
+offset_right = -55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/TopPanel/Health"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 32.0
-offset_bottom = 31.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("8_uhh13")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LevelUI/TopPanel/Health"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 55.0
+offset_bottom = 25.0
+text = "10"
+
+[node name="Currency" type="Control" parent="LevelUI/TopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 55.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/TopPanel/Currency"]
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("7_xnpqu")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LevelUI/TopPanel/Currency"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 60.0
+offset_bottom = 25.0
+text = "100"
+
+[node name="FastForward" type="Button" parent="LevelUI/TopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_top = 105.0
+offset_right = 34.0
+offset_bottom = 135.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 15
+toggle_mode = true
+text = "x2"
+icon = ExtResource("7_b6myp")
+expand_icon = true
+
+[node name="TowerRotationPanel" type="Panel" parent="LevelUI"]
+offset_left = 1280.0
+offset_top = 720.0
+offset_right = 1355.0
+offset_bottom = 760.0
+
+[node name="RotateCounterClockwiseButton" type="Button" parent="LevelUI/TowerRotationPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 35.0
+offset_bottom = 35.0
+focus_mode = 0
+icon = ExtResource("7_ggqha")
+expand_icon = true
+
+[node name="RotateClockwiseButton" type="Button" parent="LevelUI/TowerRotationPanel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 5.0
+offset_right = 70.0
+offset_bottom = 35.0
 focus_mode = 0
 icon = ExtResource("4_ggqha")
 expand_icon = true
 
-[node name="ConfigureButton" type="Button" parent="LevelUI/TowerConfigurationPanel"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 7.0
-offset_right = 65.0
-offset_bottom = 31.0
-focus_mode = 0
-icon = ExtResource("5_b6myp")
-expand_icon = true
-
-[node name="DestroyButton" type="Button" parent="LevelUI/TowerConfigurationPanel"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 7.0
-offset_right = 97.0
-offset_bottom = 31.0
-focus_mode = 0
-icon = ExtResource("6_r5kyp")
-expand_icon = true
-
 [node name="TowerPlacementPanel" type="Panel" parent="LevelUI"]
-offset_left = 1030.0
-offset_right = 1280.0
-offset_bottom = 720.0
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 250.0
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/TowerPlacementPanel"]
 layout_mode = 1
@@ -102,47 +239,6 @@ offset_right = 96.0
 offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelUI/TowerPlacementPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_constants/separation = 120
-
-[node name="Health" type="Control" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Health"]
-layout_mode = 0
-offset_right = 25.0
-offset_bottom = 25.0
-texture = ExtResource("8_uhh13")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Health"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 26.0
-text = "10"
-
-[node name="Currency" type="Control" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Currency"]
-layout_mode = 0
-offset_right = 25.0
-offset_bottom = 25.0
-texture = ExtResource("7_xnpqu")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="LevelUI/TowerPlacementPanel/VBoxContainer/HBoxContainer/Currency"]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 26.0
-text = "100"
 
 [node name="PlaceEmitterButton" type="Button" parent="LevelUI/TowerPlacementPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -178,63 +274,6 @@ layout_mode = 2
 focus_mode = 0
 text = "Поставить призму"
 metadata/TowerType = "Prism"
-
-[node name="StartWave" type="Button" parent="LevelUI/TowerPlacementPanel"]
-layout_mode = 0
-offset_left = 153.0
-offset_top = 623.0
-offset_right = 221.0
-offset_bottom = 691.0
-focus_mode = 0
-shortcut = SubResource("Shortcut_qxdb1")
-icon = ExtResource("9_6jwxn")
-
-[node name="Label" type="Label" parent="LevelUI/TowerPlacementPanel/StartWave"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "start"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartWaveHoldTimer" type="Timer" parent="LevelUI/TowerPlacementPanel/StartWave"]
-one_shot = true
-
-[node name="Slash" type="Label" parent="LevelUI/TowerPlacementPanel"]
-layout_mode = 0
-offset_left = 183.0
-offset_top = 600.0
-offset_right = 190.0
-offset_bottom = 623.0
-text = "/"
-
-[node name="WaveLabel" type="Label" parent="LevelUI/TowerPlacementPanel"]
-layout_mode = 0
-offset_left = 163.0
-offset_top = 600.0
-offset_right = 183.0
-offset_bottom = 623.0
-text = "1"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="MaxWaveLabel" type="Label" parent="LevelUI/TowerPlacementPanel"]
-layout_mode = 0
-offset_left = 190.0
-offset_top = 600.0
-offset_right = 210.0
-offset_bottom = 623.0
-text = "1"
-vertical_alignment = 1
 
 [node name="PauseButton" type="Button" parent="LevelUI"]
 offset_left = 10.0
@@ -386,7 +425,7 @@ custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 20
-text = "Главное меню"
+text = "Выбор уровня"
 
 [node name="RestartButton" type="Button" parent="LevelUI/MissionWin/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
@@ -467,16 +506,367 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 20
 text = "Выбор уровня"
 
-[connection signal="pressed" from="LevelUI/TowerConfigurationPanel/RotateButton" to="LevelUI" method="_on_rotate_button_pressed"]
-[connection signal="pressed" from="LevelUI/TowerConfigurationPanel/ConfigureButton" to="LevelUI" method="_on_configure_button_pressed"]
-[connection signal="pressed" from="LevelUI/TowerConfigurationPanel/DestroyButton" to="LevelUI" method="_on_destroy_button_pressed"]
+[node name="TowerConfigurationPanel" type="Panel" parent="LevelUI"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_right = 500.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Emitter" type="Control" parent="LevelUI/TowerConfigurationPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 600.0
+
+[node name="TowerIcon" type="TextureRect" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("5_b6myp")
+expand_mode = 1
+
+[node name="TowerName" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Эмиттер"
+vertical_alignment = 1
+
+[node name="IntensityLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 150.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "Интенсивность:"
+
+[node name="IntensityValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 75.0
+offset_right = 250.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="DistanceLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 100.0
+offset_right = 150.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 15
+text = "Дистанция:"
+
+[node name="DistanceValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 100.0
+offset_right = 250.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="ColorLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 150.0
+offset_right = 150.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 15
+text = "Цвет:"
+
+[node name="ColorDropDown" type="OptionButton" parent="LevelUI/TowerConfigurationPanel/Emitter"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 150.0
+offset_right = 240.0
+offset_bottom = 181.0
+item_count = 3
+popup/item_0/text = "Yellow"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Blue"
+popup/item_2/id = 2
+
+[node name="Mirror" type="Control" parent="LevelUI/TowerConfigurationPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 600.0
+
+[node name="TowerIcon" type="TextureRect" parent="LevelUI/TowerConfigurationPanel/Mirror"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("5_b6myp")
+expand_mode = 1
+
+[node name="TowerName" type="Label" parent="LevelUI/TowerConfigurationPanel/Mirror"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Зеркало"
+vertical_alignment = 1
+
+[node name="IntensityPenaltyLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Mirror"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 150.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "Штраф интенсивности:"
+
+[node name="IntensityPenaltyValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Mirror"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 75.0
+offset_right = 260.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="Filter" type="Control" parent="LevelUI/TowerConfigurationPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 600.0
+
+[node name="TowerIcon" type="TextureRect" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("5_b6myp")
+expand_mode = 1
+
+[node name="TowerName" type="Label" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Фильтр"
+vertical_alignment = 1
+
+[node name="IntensityPenaltyLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 203.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "Штраф интенсивности:"
+
+[node name="IntensityPenaltyValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 75.0
+offset_right = 260.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="ColorLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 125.0
+offset_right = 150.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 15
+text = "Цвет:"
+
+[node name="ColorDropDown" type="OptionButton" parent="LevelUI/TowerConfigurationPanel/Filter"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 125.0
+offset_right = 240.0
+offset_bottom = 156.0
+item_count = 3
+popup/item_0/text = "Yellow"
+popup/item_0/id = 0
+popup/item_1/text = "Red"
+popup/item_1/id = 1
+popup/item_2/text = "Blue"
+popup/item_2/id = 2
+
+[node name="Lens" type="Control" parent="LevelUI/TowerConfigurationPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 600.0
+
+[node name="TowerIcon" type="TextureRect" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("5_b6myp")
+expand_mode = 1
+
+[node name="TowerName" type="Label" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Линза"
+vertical_alignment = 1
+
+[node name="IntensityPenaltyLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 203.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "Штраф интенсивности:"
+
+[node name="IntensityPenaltyValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 75.0
+offset_right = 260.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="CoefficientLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 125.0
+offset_right = 150.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 15
+text = "Коэффициент:"
+
+[node name="CoefficientSlider" type="HSlider" parent="LevelUI/TowerConfigurationPanel/Lens"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 125.0
+offset_right = 240.0
+offset_bottom = 150.0
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Prism" type="Control" parent="LevelUI/TowerConfigurationPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 600.0
+
+[node name="TowerIcon" type="TextureRect" parent="LevelUI/TowerConfigurationPanel/Prism"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("5_b6myp")
+expand_mode = 1
+
+[node name="TowerName" type="Label" parent="LevelUI/TowerConfigurationPanel/Prism"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 48.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Призма"
+vertical_alignment = 1
+
+[node name="IntensityPenaltyLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Prism"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 203.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "Штраф интенсивности:"
+
+[node name="IntensityPenaltyValueLabel" type="Label" parent="LevelUI/TowerConfigurationPanel/Prism"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 75.0
+offset_right = 260.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 15
+text = "0"
+
+[node name="UpgradeButton" type="Button" parent="LevelUI/TowerConfigurationPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 650.0
+offset_right = 70.0
+offset_bottom = 700.0
+focus_mode = 0
+icon = ExtResource("11_qxdb1")
+expand_icon = true
+
+[node name="DestroyButton" type="Button" parent="LevelUI/TowerConfigurationPanel"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 650.0
+offset_right = 230.0
+offset_bottom = 700.0
+focus_mode = 0
+icon = ExtResource("6_r5kyp")
+expand_icon = true
+
+[connection signal="button_down" from="LevelUI/TopPanel/StartWave" to="LevelUI" method="_on_start_wave_button_down"]
+[connection signal="button_up" from="LevelUI/TopPanel/StartWave" to="LevelUI" method="_on_start_wave_button_up"]
+[connection signal="toggled" from="LevelUI/TopPanel/FastForward" to="LevelUI" method="_on_fast_forward_toggled"]
+[connection signal="pressed" from="LevelUI/TowerRotationPanel/RotateCounterClockwiseButton" to="LevelUI" method="_on_rotate_counter_clockwise_button_pressed"]
+[connection signal="pressed" from="LevelUI/TowerRotationPanel/RotateClockwiseButton" to="LevelUI" method="_on_rotate_clockwise_button_pressed"]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceEmitterButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceMirrorButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceFilterButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlaceLensButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
 [connection signal="pressed" from="LevelUI/TowerPlacementPanel/VBoxContainer/PlacePrismButton" to="LevelUI" method="_on_place_tower_button_pressed" flags=18]
-[connection signal="button_down" from="LevelUI/TowerPlacementPanel/StartWave" to="LevelUI" method="_on_start_wave_button_down"]
-[connection signal="button_up" from="LevelUI/TowerPlacementPanel/StartWave" to="LevelUI" method="_on_start_wave_button_up"]
 [connection signal="pressed" from="LevelUI/PauseButton" to="LevelUI" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="LevelUI/PauseMenu/Panel/VBoxContainer/ContinueButton" to="LevelUI" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="LevelUI/PauseMenu/Panel/VBoxContainer/OptionsButton" to="LevelUI" method="_on_options_button_pressed"]
@@ -487,3 +877,7 @@ text = "Выбор уровня"
 [connection signal="pressed" from="LevelUI/MissionWin/Panel/HBoxContainer/NextLevelButton" to="LevelUI" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="LevelUI/MissionLose/Panel/VBoxContainer/RestartButton" to="LevelUI" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="LevelUI/MissionLose/Panel/VBoxContainer/LevelSelectionButton" to="LevelUI" method="_on_level_selection_button_pressed"]
+[connection signal="item_selected" from="LevelUI/TowerConfigurationPanel/Emitter/ColorDropDown" to="LevelUI" method="_on_emitter_color_dropdown_item_selected"]
+[connection signal="item_selected" from="LevelUI/TowerConfigurationPanel/Filter/ColorDropDown" to="LevelUI" method="_on_filter_color_dropdown_item_selected"]
+[connection signal="value_changed" from="LevelUI/TowerConfigurationPanel/Lens/CoefficientSlider" to="LevelUI" method="_on_lens_coefficient_slider_value_changed"]
+[connection signal="pressed" from="LevelUI/TowerConfigurationPanel/DestroyButton" to="LevelUI" method="_on_destroy_button_pressed"]
